@@ -316,7 +316,7 @@ export default function EmployeeModal({
                           {employee.payroll.deductions.map((deduction, index) => (
                             <div key={index} className="flex justify-between p-2 bg-slate-600/50 rounded">
                               <span className="text-slate-300">{deduction.name}</span>
-                              <span className="text-white">${deduction.amount}</span>
+                              <span className="text-gray-900 dark:text-white">${deduction.amount}</span>
                             </div>
                           ))}
                         </div>

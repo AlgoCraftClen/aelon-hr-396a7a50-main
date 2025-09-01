@@ -117,7 +117,7 @@ export default function EmployeeDirectory() {
 
   return (
     <ErrorBoundary>
-      <div className="p-6 md:p-8 space-y-6 text-white">
+      <div className="p-6 md:p-8 space-y-6 text-gray-900 dark:text-white">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
@@ -125,7 +125,7 @@ export default function EmployeeDirectory() {
               Employee Directory
             </h1>
             {/* FIXED: Enhanced contrast for subtitle */}
-            <p className="text-gray-300 dark:text-slate-300 mt-1 font-medium">
+            <p className="text-gray-600 dark:text-gray-400 mt-1 font-medium">
               Manage your team members and their information
             </p>
           </div>
@@ -140,21 +140,21 @@ export default function EmployeeDirectory() {
         </div>
 
         {/* Filters */}
-        <div className="p-4 rounded-xl bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <div className="p-4 rounded-xl bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
               <div className="relative md:col-span-2">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300 w-4 h-4" />
                 <Input
                   placeholder="Search employees..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-gray-800/50 border-gray-700 focus:border-pink-500"
+                  className="pl-10 bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 focus:border-pink-500 text-gray-900 dark:text-white"
                   // Removed disabled={isGuestMode} to allow guests to filter
                 />
               </div>
 
               <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700 focus:ring-pink-500">
+                <SelectTrigger className="bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 focus:ring-pink-500 text-gray-900 dark:text-white">
                   <SelectValue placeholder="All Departments" />
                 </SelectTrigger>
                 <SelectContent>
@@ -166,7 +166,7 @@ export default function EmployeeDirectory() {
               </Select>
 
               <Select value={locationFilter} onValueChange={setLocationFilter}>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700 focus:ring-pink-500">
+                <SelectTrigger className="bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 focus:ring-pink-500 text-gray-900 dark:text-white">
                   <SelectValue placeholder="All Locations" />
                 </SelectTrigger>
                 <SelectContent>
@@ -178,7 +178,7 @@ export default function EmployeeDirectory() {
               </Select>
 
               <Select value={permitFilter} onValueChange={setPermitFilter}>
-                <SelectTrigger className="bg-gray-800/50 border-gray-700 focus:ring-pink-500">
+                <SelectTrigger className="bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 focus:ring-pink-500 text-gray-900 dark:text-white">
                   <SelectValue placeholder="Work Permit" />
                 </SelectTrigger>
                 <SelectContent>
@@ -188,7 +188,7 @@ export default function EmployeeDirectory() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400 mt-4 px-1">
+            <div className="flex items-center gap-2 text-sm text-gray-600 mt-4 px-1">
                 <Users className="w-4 h-4" />
                 <span>{filteredEmployees.length} of {employees.length} employees</span>
             </div>
@@ -205,13 +205,13 @@ export default function EmployeeDirectory() {
           ))}
         </div>
 
-        {filteredEmployees.length === 0 && (
-          <div className="p-12 text-center rounded-xl bg-[#24243e]/80">
+          {filteredEmployees.length === 0 && (
+          <div className="p-12 text-center rounded-xl bg-white/80 dark:bg-[#24243e]/80 text-gray-900 dark:text-white">
               <Users className="w-16 h-16 mx-auto mb-4 text-gray-500" />
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 No employees found
               </h3>
-              <p className="text-gray-400 mb-6">
+              <p className="text-gray-600 mb-6">
                 Try adjusting your search filters or add new employees to get started.
               </p>
               <GuestActionButton

@@ -43,6 +43,7 @@ import {
 import { useGuestMode } from "../components/auth/GuestModeProvider";
 import { SiteContent } from "@/api/entities";
 import { UploadFile } from "@/api/integrations"; // Import UploadFile integration
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 // 🔒 PROTECTED: Feature highlights - maintain Marshall Islands focus
 const featureHighlights = [
@@ -64,7 +65,6 @@ const demoModules = [
 export default function Welcome() {
   const navigate = useNavigate();
   const { user, setGuestMode, isAuthenticated, isCheckingAuth, switchToGuestMode } = useGuestMode(); // Added 'user' to destructuring
-  const [darkMode, setDarkMode] = useState(false);
   const [showSignInPrompt, setShowSignInPrompt] = useState(false);
   const [welcomeVideoUrl, setWelcomeVideoUrl] = useState('');
   
@@ -104,29 +104,7 @@ export default function Welcome() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // 🎨 THEME INITIALIZATION AND MANAGEMENT
-  useEffect(() => {
-    // Check for saved theme preference or system preference
-    const initializeTheme = () => {
-      const savedTheme = localStorage.getItem('iakwe-hr-theme');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      let shouldBeDark = false;
-      
-      if (savedTheme) {
-        shouldBeDark = savedTheme === 'dark';
-      } else {
-        shouldBeDark = prefersDark;
-      }
-      
-      setDarkMode(shouldBeDark);
-      document.documentElement.classList.toggle('dark', shouldBeDark);
-      
-      console.log("🎨 Theme initialized:", shouldBeDark ? 'dark' : 'light');
-    };
-
-    initializeTheme();
-  }, []);
+  // Theme is managed globally via ThemeProvider/ThemeToggle
 
   // NEW: Load welcome video URL
   const loadWelcomeVideo = async () => {
@@ -149,13 +127,7 @@ export default function Welcome() {
     loadWelcomeVideo();
   }, []);
 
-  const toggleTheme = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('iakwe-hr-theme', newMode ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', newMode);
-    console.log("🎨 Theme switched to:", newMode ? 'dark' : 'light');
-  };
+  // Theme toggling handled by ThemeToggle component
   
   // 🔒 NAVIGATION HANDLERS - Following UX Best Practices
   
@@ -269,8 +241,7 @@ export default function Welcome() {
   }
 
   return (
-    <div className={darkMode ? 'dark' : ''}>
-      <div className="min-h-screen transition-all duration-500 bg-gradient-to-br from-purple-50 via-white to-orange-50 text-gray-900 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900 dark:text-slate-100">
+    <div className="min-h-screen transition-all duration-500 bg-gradient-to-br from-purple-50 via-white to-orange-50 text-gray-900 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900 dark:text-slate-100">
         {/* Header Navigation */}
         <header className="relative z-10 p-6">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -288,14 +259,7 @@ export default function Welcome() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={toggleTheme} 
-                className="rounded-lg text-gray-700 hover:text-purple-700 hover:bg-purple-50 dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-700 transition-all duration-200"
-              >
-                {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </Button>
+              <ThemeToggle />
             </div>
           </div>
         </header>
@@ -613,8 +577,7 @@ export default function Welcome() {
               </Button>
             </DialogFooter>
           </DialogContent>
-        </Dialog>
-      </div>
-    </div>
+    </Dialog>
+  </div>
   );
 }

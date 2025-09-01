@@ -144,7 +144,7 @@ export default function AlumniTracker({ terminatedEmployees, exitInterviews }) {
       {/* Alumni Directory */}
       <Card className="bg-gray-800/50 border border-gray-700/50">
         <CardHeader>
-          <CardTitle className="text-white">Alumni Directory</CardTitle>
+          <CardTitle className="text-gray-900 dark:text-white">Alumni Directory</CardTitle>
         </CardHeader>
         <CardContent>
           {filteredAlumni.length === 0 ? (

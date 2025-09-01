@@ -58,7 +58,7 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-orange-50 text-gray-900 dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900 dark:text-white">
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
@@ -68,12 +68,12 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
       )}
 
       {/* Sidebar */}
-      <div className={`fixed left-0 top-0 h-full w-64 bg-[#1a1a2e]/95 backdrop-blur-xl border-r border-gray-700/50 transform transition-transform duration-300 ease-in-out z-50 ${
+  <div className={`fixed left-0 top-0 h-full w-64 bg-white/95 dark:bg-[#1a1a2e]/95 backdrop-blur-xl border-r border-gray-200 dark:border-gray-700/50 transform transition-transform duration-300 ease-in-out z-50 ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       } lg:translate-x-0 flex flex-col`}>
 
-        {/* Logo/Header */}
-        <div className="p-6 border-b border-gray-700/50">
+  {/* Logo/Header */}
+  <div className="p-6 border-b border-gray-200 dark:border-gray-700/50">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-orange-500 rounded-xl flex items-center justify-center">
               <span className="text-white font-bold text-lg">HR</span>
@@ -100,11 +100,11 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
                   isActive
                     ? 'bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 text-white'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-purple-400' : 'text-gray-400 group-hover:text-purple-400'}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-purple-400' : 'text-gray-600 dark:text-gray-400 group-hover:text-purple-400'}`} />
                 <span className="font-medium">{item.displayName || item.name}</span>
                 {isActive && (
                   <div className="ml-auto w-2 h-2 bg-purple-400 rounded-full" />
@@ -123,12 +123,12 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group w-full ${
                 currentPageName === 'MyHRPortal'
                   ? 'bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 text-white'
-                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <User className={`w-5 h-5 ${
-                currentPageName === 'MyHRPortal' ? 'text-purple-400' : 'text-gray-400 group-hover:text-purple-400'
+                currentPageName === 'MyHRPortal' ? 'text-purple-400' : 'text-gray-600 dark:text-gray-400 group-hover:text-purple-400'
               }`} />
               <span className="font-medium">My HR Portal</span>
               {currentPageName === 'MyHRPortal' && (
@@ -142,12 +142,12 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group w-full ${
                 currentPageName === 'Settings'
                   ? 'bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 text-white'
-                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Settings className={`w-5 h-5 ${
-                currentPageName === 'Settings' ? 'text-purple-400' : 'text-gray-400 group-hover:text-purple-400'
+                currentPageName === 'Settings' ? 'text-purple-400' : 'text-gray-600 dark:text-gray-400 group-hover:text-purple-400'
               }`} />
               <span className="font-medium">Settings</span>
               {currentPageName === 'Settings' && (
@@ -161,12 +161,12 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group w-full ${
                 currentPageName === 'Support'
                   ? 'bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 text-white'
-                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/5'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <HelpCircle className={`w-5 h-5 ${
-                currentPageName === 'Support' ? 'text-purple-400' : 'text-gray-400 group-hover:text-purple-400'
+                currentPageName === 'Support' ? 'text-purple-400' : 'text-gray-600 dark:text-gray-400 group-hover:text-purple-400'
               }`} />
               <span className="font-medium">Support Center</span>
               {currentPageName === 'Support' && (
@@ -176,16 +176,16 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
           </div>
 
           {/* User Profile Section and Logout Button */}
-          <div className="p-4 border-t border-gray-700/50">
-            <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-gray-700/50">
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700/50">
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 dark:bg-white/5 border border-gray-200 dark:border-gray-700/50">
               <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold shrink-0">
                 {user?.full_name ? user.full_name.split(' ').map(n => n[0]).join('').toUpperCase() : 'U'}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">
+                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                   {user?.full_name || 'User'}
                 </p>
-                <p className="text-xs text-gray-400 truncate">
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                   {user?.email || 'user@company.com'}
                 </p>
               </div>
@@ -207,13 +207,13 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
       {/* Main Content */}
       <div className="lg:ml-64">
         {/* Top Bar for Mobile */}
-        <div className="bg-[#1a1a2e]/95 backdrop-blur-xl border-b border-gray-700/50 p-4 lg:hidden">
+  <div className="bg-white/95 dark:bg-[#1a1a2e]/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700/50 p-4 lg:hidden">
           <div className="flex items-center justify-between">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="text-white"
+              className="text-gray-700 dark:text-white"
             >
               <Menu className="w-6 h-6" />
             </Button>
@@ -238,7 +238,7 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
           <Card className="w-full max-w-md mx-4 bg-slate-800 border-slate-700">
             <CardHeader>
-              <CardTitle className="text-white">Confirm Sign Out</CardTitle>
+              <CardTitle className="text-gray-900 dark:text-white">Confirm Sign Out</CardTitle>
               <CardDescription className="text-gray-400">
                 Are you sure you want to sign out? This will end your session and return you to the welcome page.
               </CardDescription>
@@ -248,7 +248,7 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
                 <Button
                   variant="outline"
                   onClick={() => setShowLogoutConfirm(false)}
-                  className="border-slate-600 text-gray-300 hover:bg-slate-700"
+                  className="border-slate-600 text-gray-700 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-slate-700/10"
                 >
                   Cancel
                 </Button>

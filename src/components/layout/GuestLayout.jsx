@@ -38,9 +38,9 @@ export default function GuestLayout({ children }) {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-slate-900">
+    <div className="flex h-screen bg-white dark:bg-slate-900">
       {/* Sidebar */}
-      <aside className="w-64 flex-shrink-0 bg-white dark:bg-slate-800/50 backdrop-blur-xl border-r border-gray-200 dark:border-slate-700/50 flex flex-col shadow-lg">
+  <aside className="w-64 flex-shrink-0 bg-white dark:bg-slate-800/50 backdrop-blur-xl border-r border-gray-200 dark:border-slate-700/50 flex flex-col shadow-lg">
         {/* Logo */}
         <div className="h-20 flex items-center justify-center px-6 border-b border-gray-200 dark:border-slate-700/50">
           <div className="flex items-center gap-3">

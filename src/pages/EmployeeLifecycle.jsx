@@ -110,7 +110,7 @@ export default function EmployeeLifecycle() {
 
       {/* Lifecycle Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
@@ -124,7 +124,7 @@ export default function EmployeeLifecycle() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
@@ -138,7 +138,7 @@ export default function EmployeeLifecycle() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
@@ -152,7 +152,7 @@ export default function EmployeeLifecycle() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
@@ -170,7 +170,7 @@ export default function EmployeeLifecycle() {
       </div>
 
       {/* Main Content */}
-      <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
         <CardContent className="p-0">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <div className="p-6 border-b border-gray-700/50">
@@ -277,7 +277,7 @@ export default function EmployeeLifecycle() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <Card className="bg-gray-800/50 border border-gray-700/50">
                     <CardHeader>
-                      <CardTitle className="text-white">Active Employees</CardTitle>
+                      <CardTitle className="text-gray-900 dark:text-white">Active Employees</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -307,7 +307,7 @@ export default function EmployeeLifecycle() {
 
                   <Card className="bg-gray-800/50 border border-gray-700/50">
                     <CardHeader>
-                      <CardTitle className="text-white">Completed Exit Interviews</CardTitle>
+                      <CardTitle className="text-gray-900 dark:text-white">Completed Exit Interviews</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 max-h-64 overflow-y-auto">

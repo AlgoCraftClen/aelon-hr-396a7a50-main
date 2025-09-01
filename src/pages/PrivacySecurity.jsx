@@ -123,7 +123,7 @@ export default function PrivacySecurity() {
 
       {/* Privacy Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
@@ -137,7 +137,7 @@ export default function PrivacySecurity() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
@@ -151,7 +151,7 @@ export default function PrivacySecurity() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
@@ -181,7 +181,7 @@ export default function PrivacySecurity() {
       </div>
 
       {/* Main Content */}
-      <Card className="bg-[#24243e]/80 backdrop-blur-sm border border-gray-700/50">
+  <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
         <CardContent className="p-0">
           <Tabs defaultValue="consents" className="w-full">
             <div className="p-6 border-b border-gray-700/50">
