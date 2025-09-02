@@ -3,7 +3,6 @@ import Pages from "@/pages/index.jsx"
 import { Toaster } from "@/components/ui/toaster"
 import ErrorBoundary from "@/components/common/ErrorBoundary"
 import DevModeBanner from "@/components/common/DevModeBanner"
-import { ThemeProvider } from "@/components/theme/ThemeProvider"
 
 // Global error handler
 window.addEventListener('error', (event) => {
@@ -33,13 +32,9 @@ window.addEventListener('unhandledrejection', (event) => {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider>
-        <DevModeBanner />
-        <Pages />
-        <Toaster />
-      </ThemeProvider>
+      <DevModeBanner />
+      <Pages />
+      <Toaster />
     </ErrorBoundary>
   )
 }
-
-export default App 

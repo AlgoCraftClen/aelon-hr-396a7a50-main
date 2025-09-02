@@ -105,7 +105,7 @@ export default function PrivacySecurity() {
   }
 
   return (
-    <div className="p-6 md:p-8 space-y-8 text-white">
+    <div className="p-6 md:p-8 space-y-8 text-gray-900 dark:text-white">
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -125,13 +125,13 @@ export default function PrivacySecurity() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
   <Card className="bg-white/50 dark:bg-[#24243e]/80 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 text-gray-900 dark:text-white">
           <CardContent className="p-6">
-            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-white" />
               </div>
               <div>
                 <p className="text-sm text-gray-400">Consents Granted</p>
-                <p className="text-2xl font-bold text-white">{getConsentCount('granted')}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{getConsentCount('granted')}</p>
               </div>
             </div>
           </CardContent>

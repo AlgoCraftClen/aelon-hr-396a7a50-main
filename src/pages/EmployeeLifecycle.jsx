@@ -92,7 +92,7 @@ export default function EmployeeLifecycle() {
   }
 
   return (
-    <div className="p-6 md:p-8 space-y-8 text-white">
+    <div className="p-6 md:p-8 space-y-8 text-gray-900 dark:text-white">
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -118,7 +118,7 @@ export default function EmployeeLifecycle() {
               </div>
               <div>
                 <p className="text-sm text-gray-400">Active Employees</p>
-                <p className="text-2xl font-bold text-white">{activeEmployees.length}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{activeEmployees.length}</p>
               </div>
             </div>
           </CardContent>

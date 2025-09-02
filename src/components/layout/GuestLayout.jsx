@@ -17,6 +17,7 @@ import {
   Star
 } from 'lucide-react';
 import { GuestActionButton } from "../auth/GuestActionBlocker";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { createPageUrl } from '@/utils';
 
 const navItems = [
@@ -42,7 +43,7 @@ export default function GuestLayout({ children }) {
       {/* Sidebar */}
   <aside className="w-64 flex-shrink-0 bg-white dark:bg-slate-800/50 backdrop-blur-xl border-r border-gray-200 dark:border-slate-700/50 flex flex-col shadow-lg">
         {/* Logo */}
-        <div className="h-20 flex items-center justify-center px-6 border-b border-gray-200 dark:border-slate-700/50">
+        <div className="h-20 flex items-center justify-between px-6 border-b border-gray-200 dark:border-slate-700/50">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-orange-500 rounded-xl flex items-center justify-center shadow-md">
               <span className="text-white font-bold text-lg">HR</span>
@@ -56,6 +57,9 @@ export default function GuestLayout({ children }) {
                 <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Demo Mode</span>
               </div>
             </div>
+          </div>
+          <div className="pr-2">
+            <ThemeToggle />
           </div>
         </div>
         
@@ -83,8 +87,8 @@ export default function GuestLayout({ children }) {
           <Card className="bg-gradient-to-br from-purple-500 to-orange-500 text-white border-0 shadow-2xl">
             <CardContent className="p-4 text-center">
               <Star className="w-8 h-8 mx-auto mb-2 text-white" />
-              <h3 className="text-md font-bold mb-1">Unlock Full Access</h3>
-              <p className="text-purple-100 mb-4 text-xs">
+              <h3 className="text-md font-bold mb-1 text-gray-900 dark:text-white">Unlock Full Access</h3>
+              <p className="text-purple-100 mb-4 text-xs text-gray-700 dark:text-purple-100">
                 Sign up to manage your team with all features enabled.
               </p>
               <Button

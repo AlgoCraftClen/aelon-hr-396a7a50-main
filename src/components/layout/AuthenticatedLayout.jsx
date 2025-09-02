@@ -29,6 +29,7 @@ import {
   User,
 } from "lucide-react";
 import { useGuestMode } from "../auth/GuestModeProvider";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export default function AuthenticatedLayout({ children, currentPageName, user }) {
   const { logout } = useGuestMode();
@@ -221,7 +222,10 @@ export default function AuthenticatedLayout({ children, currentPageName, user })
               <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-orange-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">HR</span>
               </div>
-              <span className="text-white font-semibold">IAKWE HR</span>
+              <span className="text-gray-900 dark:text-white font-semibold">IAKWE HR</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
             </div>
             <div className="w-10"></div>
           </div>
