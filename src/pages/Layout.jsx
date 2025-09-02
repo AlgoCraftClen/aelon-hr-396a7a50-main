@@ -21,9 +21,7 @@ import LogoutScreen from "@/components/common/LogoutScreen";
 // Add immediate redirect monitoring at the very top level
 if (typeof window !== 'undefined') {
   const currentUrl = window.location.href;
-  if (currentUrl.includes('/login?from_url=') || 
-      currentUrl.includes('/login?app_id=') ||
-      currentUrl.includes('base44.app/login')) {
+  if (currentUrl.includes('/login?from_url=') || currentUrl.includes('/login?app_id=') || /https?:\/\/[^\/]*login/.test(currentUrl)) {
     console.log("🚨 EMERGENCY REDIRECT FROM PLATFORM LOGIN");
     window.location.replace('/Welcome');
   }

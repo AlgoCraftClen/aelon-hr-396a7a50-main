@@ -8,15 +8,14 @@ export default function LogoutGuard() {
   useEffect(() => {
     console.log("🛡️ LOGOUT GUARD ACTIVE - PERMANENT SYSTEM PROTECTION");
     
-    // Monitor for unwanted redirects to base44 login
+  // Monitor for unwanted redirects to external platform logins
     const enforceWelcomePageLaw = () => {
       const currentUrl = window.location.href;
       
-      // If we detect any platform login URLs, immediately redirect to Welcome
-      if (currentUrl.includes('/login?from_url=') || 
-          currentUrl.includes('/login?app_id=') ||
-          currentUrl.includes('base44.app/login') ||
-          currentUrl.includes('base44.com/login')) {
+    // If we detect any platform login URLs, immediately redirect to Welcome
+    if (currentUrl.includes('/login?from_url=') || 
+      currentUrl.includes('/login?app_id=') ||
+      /https?:\/\/[^\/]*login/.test(currentUrl)) {
         console.log("⚠️ PLATFORM LOGIN DETECTED - ENFORCING WELCOME REDIRECT");
         console.log("⚠️ Blocked URL:", currentUrl);
   try { const goTo = require('@/lib/navigation').default; goTo('/Welcome', { replace: true }); } catch (e) { try { window.location.replace(createPageUrl('Welcome')); } catch (_) { window.location.replace('/Welcome'); } }
@@ -32,7 +31,7 @@ export default function LogoutGuard() {
     const originalReplaceState = history.replaceState;
     
   history.pushState = function(state, title, url) {
-      if (url && (url.includes('/login?') || url.includes('base44.app/login') || url.includes('base44.com/login'))) {
+      if (url && (url.includes('/login?') || /https?:\/\/[^\/]*login/.test(url))) {
         console.log("⚠️ BLOCKED PLATFORM LOGIN PUSH:", url);
   try { const goTo = require('@/lib/navigation').default; goTo('/Welcome', { replace: true }); } catch (e) { try { window.location.href = createPageUrl('Welcome'); } catch (_) { window.location.href = '/Welcome'; } }
         return;
@@ -41,7 +40,7 @@ export default function LogoutGuard() {
     };
     
   history.replaceState = function(state, title, url) {
-      if (url && (url.includes('/login?') || url.includes('base44.app/login') || url.includes('base44.com/login'))) {
+      if (url && (url.includes('/login?') || /https?:\/\/[^\/]*login/.test(url))) {
         console.log("⚠️ BLOCKED PLATFORM LOGIN REPLACE:", url);
     try { const goTo = require('@/lib/navigation').default; goTo('/Welcome', { replace: true }); } catch (e) { try { window.location.href = createPageUrl('Welcome'); } catch (_) { window.location.href = '/Welcome'; } }
         return;

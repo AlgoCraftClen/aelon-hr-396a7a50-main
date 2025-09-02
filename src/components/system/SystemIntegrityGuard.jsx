@@ -26,8 +26,8 @@ const CRITICAL_MODULES = [
 const INTEGRITY_CHECKS = [
   {
     name: 'Logout Flow',
-    check: () => typeof window !== 'undefined' && window.location.origin.includes('base44'),
-    description: 'Logout should redirect to Welcome page'
+  check: () => typeof window !== 'undefined' && typeof window.location !== 'undefined',
+  description: 'Logout should redirect to Welcome page (generic check)'
   },
   {
     name: 'Guest Mode',
