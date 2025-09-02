@@ -1,17 +1,23 @@
 import React from 'react';
 import { useGuestMode } from './GuestModeProvider';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Eye, UserPlus } from 'lucide-react';
 
 export default function GuestModeWrapper({ children }) {
   const { isGuestMode } = useGuestMode();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Ensure Welcome remains a pure public landing page.
+  // Do not show any guest-mode UI on the Welcome entry point even if guest mode is active.
+  const pathname = location?.pathname || '';
+  const isWelcomePath = pathname === '/' || pathname.toLowerCase() === '/welcome';
 
   return (
     <div className="relative">
-      {isGuestMode && (
+  {isGuestMode && !isWelcomePath && (
         <div className="sticky top-0 z-40 bg-gradient-to-r from-purple-600 to-orange-600 text-white p-3 text-center shadow-lg">
           <div className="container mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <div className="flex items-center gap-2">

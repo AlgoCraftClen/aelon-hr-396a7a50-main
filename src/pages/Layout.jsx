@@ -39,7 +39,12 @@ function LayoutContent({ children, currentPageName }) {
   // Define whether to render the AI assistant. It should NOT appear on the Welcome page.
   const shouldRenderAI = currentPageName !== 'Welcome';
 
-  // 🚨 REMOVED: Guest navigation useEffect - This was causing the race condition
+  // � PROTECTED: Public pages list - maintain this list
+  // Public pages must render without sidebars even if guest mode is active.
+  const publicPages = ['Welcome', 'Auth', 'ForgotPassword', 'Pricing'];
+  const isPublicPage = publicPages.includes(currentPageName);
+
+  // �🚨 REMOVED: Guest navigation useEffect - This was causing the race condition
   // The switchToGuestMode() function now handles navigation directly
   // The previous useEffect block for guest mode navigation was here:
   /*
@@ -192,9 +197,22 @@ function LayoutContent({ children, currentPageName }) {
     );
   }
 
-  // 🔒 PROTECTED: Public pages list - maintain this list
-  const publicPages = ['Welcome', 'Auth', 'ForgotPassword', 'Pricing'];
-  const isPublicPage = publicPages.includes(currentPageName);
+  // If this is a public page, render without sidebars regardless of guest/auth state
+  if (isPublicPage) {
+    console.log("🌐 RENDERING PUBLIC PAGE EXPERIENCE (PRIORITY)");
+    return (
+      <ErrorBoundary>
+        <ProtectedRoute pageName={currentPageName}>
+          <GuestModeWrapper>
+            <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-orange-50 dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900">
+              {children}
+              {shouldRenderAI && <FloatingAIAssistant />}
+            </div>
+          </GuestModeWrapper>
+        </ProtectedRoute>
+      </ErrorBoundary>
+    );
+  }
 
   // 🚨 HARDENED: EXPLICIT GUEST MODE HANDLING - Now with pure state guarantee
   if (isGuestMode) {
@@ -228,8 +246,8 @@ function LayoutContent({ children, currentPageName }) {
     );
   }
 
-  // For public pages, show simple layout with protection
-  console.log("🌐 RENDERING PUBLIC PAGE EXPERIENCE");
+  // If we reach here, the page is neither public nor guest-only; default to authenticated fallback
+  console.log("🌐 RENDERING FALLBACK - DEFAULTING TO SIMPLE WRAPPER");
   return (
     <ErrorBoundary>
       <ProtectedRoute pageName={currentPageName}>

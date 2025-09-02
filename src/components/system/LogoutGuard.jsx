@@ -17,9 +17,9 @@ export default function LogoutGuard() {
           currentUrl.includes('/login?app_id=') ||
           currentUrl.includes('base44.app/login') ||
           currentUrl.includes('base44.com/login')) {
-        console.log("🚨 PLATFORM LOGIN DETECTED - ENFORCING WELCOME REDIRECT");
-        console.log("🚨 Blocked URL:", currentUrl);
-        window.location.replace('/Welcome');
+        console.log("⚠️ PLATFORM LOGIN DETECTED - ENFORCING WELCOME REDIRECT");
+        console.log("⚠️ Blocked URL:", currentUrl);
+  try { const goTo = require('@/lib/navigation').default; goTo('/Welcome', { replace: true }); } catch (e) { try { window.location.replace(createPageUrl('Welcome')); } catch (_) { window.location.replace('/Welcome'); } }
       }
     };
     
@@ -31,19 +31,19 @@ export default function LogoutGuard() {
     const originalPushState = history.pushState;
     const originalReplaceState = history.replaceState;
     
-    history.pushState = function(state, title, url) {
+  history.pushState = function(state, title, url) {
       if (url && (url.includes('/login?') || url.includes('base44.app/login') || url.includes('base44.com/login'))) {
-        console.log("🚨 BLOCKED PLATFORM LOGIN PUSH:", url);
-        window.location.href = '/Welcome';
+        console.log("⚠️ BLOCKED PLATFORM LOGIN PUSH:", url);
+  try { const goTo = require('@/lib/navigation').default; goTo('/Welcome', { replace: true }); } catch (e) { try { window.location.href = createPageUrl('Welcome'); } catch (_) { window.location.href = '/Welcome'; } }
         return;
       }
       return originalPushState.apply(history, arguments);
     };
     
-    history.replaceState = function(state, title, url) {
+  history.replaceState = function(state, title, url) {
       if (url && (url.includes('/login?') || url.includes('base44.app/login') || url.includes('base44.com/login'))) {
-        console.log("🚨 BLOCKED PLATFORM LOGIN REPLACE:", url);
-        window.location.href = '/Welcome';
+        console.log("⚠️ BLOCKED PLATFORM LOGIN REPLACE:", url);
+    try { const goTo = require('@/lib/navigation').default; goTo('/Welcome', { replace: true }); } catch (e) { try { window.location.href = createPageUrl('Welcome'); } catch (_) { window.location.href = '/Welcome'; } }
         return;
       }
       return originalReplaceState.apply(history, arguments);

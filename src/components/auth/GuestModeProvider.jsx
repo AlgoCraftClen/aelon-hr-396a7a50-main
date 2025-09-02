@@ -5,6 +5,8 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { auth, supabase } from '@/lib/supabase';
+import { createPageUrl } from '@/utils';
+import goTo from '@/lib/navigation';
 
 const GuestModeContext = createContext({
   isAuthenticated: false,
@@ -105,9 +107,12 @@ export default function GuestModeProvider({ children }) {
     try {
       console.log("🔐 Initiating login...");
       
-      // 🚨 CRITICAL: Instead of calling auth.signIn() which triggers platform screens,
-      // redirect to our internal Auth page
-      window.location.href = '/Auth?mode=login';
+      // 🚨 CRITICAL: Use SPA-friendly navigation to internal Auth page
+      try {
+        goTo('Auth?mode=login', { replace: true });
+      } catch (e) {
+        // fallback preserved inside goTo
+      }
       
     } catch (error) {
       console.error("Login error:", error);
@@ -185,9 +190,9 @@ export default function GuestModeProvider({ children }) {
     console.log("⚖️ Step 4: THE LAW IS ENFORCED. REDIRECTING TO WELCOME PAGE.");
     console.log("🏠 Executing hard redirect to /Welcome");
     
-    // 🚨 ABSOLUTE LAW: Force guest mode and redirect to Welcome
-    sessionStorage.setItem('force_guest_mode', 'true');
-    window.location.href = '/Welcome';
+  // 🚨 ABSOLUTE LAW: Force guest mode and redirect to Welcome
+  sessionStorage.setItem('force_guest_mode', 'true');
+  try { window.location.href = createPageUrl('Welcome'); } catch (e) { window.location.href = '/Welcome'; }
   };
 
   const setGuestMode = (enabled) => {
@@ -202,9 +207,30 @@ export default function GuestModeProvider({ children }) {
 
   const switchToGuestMode = () => {
     console.log("👁️ SWITCHING TO GUEST MODE - USER REQUESTED");
-    setGuestMode(true);
-    // Navigate to guest dashboard
-    window.location.href = '/GuestDashboard';
+    (async () => {
+      try {
+        // If authenticated, attempt a server-side sign out to avoid token leakage
+        try {
+          const current = await auth.getUser().catch(() => null);
+          if (current) {
+            console.log('⚠️ Authenticated user detected: signing out server-side before entering guest mode');
+            await auth.signOut().catch(e => console.warn('signOut failed, continuing:', e));
+          }
+        } catch (e) {
+          console.warn('Error while checking/signing out user:', e);
+        }
+
+        // Persist explicit guest selection so reloads remain in guest mode
+  try { sessionStorage.setItem('force_guest_mode', 'true'); } catch (e) { console.warn('Could not set sessionStorage flag for guest mode', e); }
+  setGuestMode(true);
+  goTo('GuestDashboard', { replace: true });
+      } catch (err) {
+        console.error('Error switching to guest mode:', err);
+        // Best-effort fallback
+        setGuestMode(true);
+        try { window.location.href = '/GuestDashboard'; } catch (_) { /* ignore */ }
+      }
+    })();
   };
 
   // 🚨 CRITICAL: Check auth status on mount

@@ -184,7 +184,10 @@ export default function MyHRPortal() {
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Your employee profile hasn't been set up yet. Please contact HR to create your employee record.
               </p>
-              <Button onClick={() => window.location.href = '/Dashboard'}>
+              <Button onClick={() => {
+                try { const goTo = require('@/lib/navigation').default; goTo('Dashboard', { replace: true }); }
+                catch (e) { try { window.location.href = createPageUrl('Dashboard'); } catch (_) { window.location.href = '/Dashboard'; } }
+              }}>
                 Return to Dashboard
               </Button>
             </CardContent>

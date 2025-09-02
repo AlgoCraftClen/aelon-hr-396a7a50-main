@@ -48,7 +48,10 @@ class ErrorBoundary extends React.Component {
                 </Button>
                 <Button 
                   variant="outline" 
-                  onClick={() => window.location.href = '/Welcome'}
+                  onClick={() => {
+                    try { const goTo = require('@/lib/navigation').default; goTo('Welcome', { replace: true }); }
+                    catch (e) { try { window.location.href = createPageUrl('Welcome'); } catch (_) { window.location.href = '/Welcome'; } }
+                  }}
                   className="w-full"
                 >
                   Go to Welcome Page

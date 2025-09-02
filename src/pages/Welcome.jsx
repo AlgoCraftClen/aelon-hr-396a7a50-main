@@ -91,7 +91,6 @@ export default function Welcome() {
       if (currentUrl.includes('/login?from_url=') || 
           (currentUrl.includes('/login') && !currentUrl.includes('/Welcome') && !currentUrl.includes('/Auth'))) {
         console.log("🚨 Welcome page blocking unwanted redirect:", currentUrl);
-        window.history.replaceState(null, '', window.location.origin + '/Welcome');
       }
     };
 

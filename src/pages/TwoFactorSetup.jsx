@@ -42,7 +42,12 @@ export default function TwoFactorSetup() {
       
       // If 2FA is already enabled, redirect to settings
       if (currentUser.two_factor_enabled) {
-        window.location.href = createPageUrl("Settings");
+        try { 
+          const goTo = (await import('@/lib/navigation')).default;
+          goTo('Settings', { replace: true });
+        } catch (e) {
+          window.location.href = createPageUrl("Settings");
+        }
       }
     } catch (error) {
       console.error("Error loading user data:", error);
